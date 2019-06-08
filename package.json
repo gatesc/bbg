@@ -1,0 +1,15 @@
+{
+  "name": "bbg",
+  "version": "0.1.0",
+  "description": "** Getting Started **",
+  "scripts": {
+    "start": "concurrently 'cd server && node server.js' 'cd client && npm start'"
+  },
+  "keywords": [],
+  "author": "Charles Gates",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "main": "index.js"
+}
