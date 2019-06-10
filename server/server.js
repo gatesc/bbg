@@ -2,6 +2,7 @@ const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
+const bbg = require('./bbg.js');
 
 const API_PORT = process.env.PORT || 3001;
 const app = express();
@@ -19,9 +20,11 @@ app.get("/", (req, res) => {
   res.send("HI THERE")
 })
 
-app.get('/getGameInfo', (req, res) => {
+app.get('/getGameInfo', async (req, res) => {
   console.log("HERE I AM")
-  return res.json({success: true, data: 'Hi Mom!'});
+  console.log(bbg)
+  let theData = await bbg.getGameInfo('catan');
+  return res.json({success: true, data: theData});
 })
 
 // finish up stuff
