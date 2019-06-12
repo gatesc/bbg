@@ -9,6 +9,7 @@ import $ from 'jquery';
 import Popper from 'popper.js';
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 
+
 //import "../node_modules/jquery/dist/jquery.slim.min.js"
 //import "../node_modules/tether/dist/js/tether.min.js"
 
