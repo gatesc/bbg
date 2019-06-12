@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "concurrently": "^4.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -32,7 +33,13 @@
   "proxy": "http://penguin.linux.text:3001",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "jquery": "^3.4.1",
+    "popper": "^1.0.1",
+    "popper.js": "^1.15.0",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "tether": "^1.4.6"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
