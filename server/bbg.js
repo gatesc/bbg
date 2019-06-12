@@ -5,7 +5,7 @@ const xmlParser = require('xml2json');
 
 module.exports = {
   'getGameInfo': async function(name) {
-    let n='Blood rage'
+    let n=name
     let searchUrl = "https://www.boardgamegeek.com/xmlapi2/search?exact=1&type=boardgame&query="+n;
     console.log(searchUrl)
     var xmlInfo = await axios.get(searchUrl);

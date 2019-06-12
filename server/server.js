@@ -22,8 +22,10 @@ app.get("/", (req, res) => {
 
 app.get('/getGameInfo', async (req, res) => {
   console.log("HERE I AM")
+  console.log(req.query)
+  console.log("name... ", req.query.name)
   console.log(bbg)
-  let theData = await bbg.getGameInfo('catan');
+  let theData = await bbg.getGameInfo(req.query.name);
   return res.json({success: true, data: theData});
 })
 
