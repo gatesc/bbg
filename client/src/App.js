@@ -23,8 +23,8 @@ class GoButton extends React.Component {
 //        toggle: !prevState.toggle
 //      })
 //    );
-//    let url='http://penguin.linux.test:3001/getGameInfo?name=Cry Havoc';
-      let url='http://penguin.linux.test:3001/getGameInfo?name=Root';
+    let url='http://penguin.linux.test:3001/getGameInfo?name=Cry Havoc';
+//      let url='http://penguin.linux.test:3001/getGameInfo?name=Root';
       axios.get(url).then((res) => {
       console.log("Got It.  Results... ", res);
       this.state = res.data;

@@ -62,3 +62,7 @@ typings/
 
 # emacs backup files
 *~
+
+# other miscellaneous files
+package-lock.json.orig
+

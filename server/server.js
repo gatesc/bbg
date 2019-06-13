@@ -20,6 +20,14 @@ app.get("/", (req, res) => {
   res.send("HI THERE")
 })
 
+app.get('/getGameIds', async (req, res) => {
+  console.log(req.query)
+  console.log("name... ", req.query.name)
+  console.log(bbg)
+  let theData = await bbg.getGameIds(req.query.name);
+  return res.json({success: true, data: theData});
+})
+
 app.get('/getGameInfo', async (req, res) => {
   console.log("HERE I AM")
   console.log(req.query)
@@ -28,6 +36,7 @@ app.get('/getGameInfo', async (req, res) => {
   let theData = await bbg.getGameInfo(req.query.name);
   return res.json({success: true, data: theData});
 })
+
 
 // finish up stuff
 //app.use('/api', router);
