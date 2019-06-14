@@ -10,58 +10,51 @@ var massageBoardGameInfo = function(bbgInfo) {
     return gameInfo;
   }
 
-  let g = bbgInfo.item;
-  console.log("================")
-  console.log(bbgInfo)
-  console.log("================")
-  gameInfo.id = g.id;
-  gameInfo.image = {thumbnail: g.thumbnail, image: g.image}
+  let g = bbgInfo;
+  //console.log("================")
+  //console.log(bbgInfo)
+  //console.log("================")
+
+  // get the game name
+  if (!Array.isArray(g.name)) {
+      let a=g.name;
+      g.name=[];
+      g.name.push(a);
+  }
   for (let i=0; i<g.name.length; i++) {
     if (g.name[i].type === "primary") {
       gameInfo.name = g.name[i].value;
     }
   }
+
+  gameInfo.id = g.id;
   gameInfo.description = g.description;
+  gameInfo.image = {thumbnail: g.thumbnail, full: g.image}
   gameInfo.year = g.yearpublished.value;
-  gameInfo.num_players = {min: g.minplayers, max: g.maxplayers};
-  gameInfo.play_time = {min: g.minplaytime, max: g.maxplaytime};
-  var category="";
-  var mechanic="";
-  var expansion="";
-  var designer ="";
-  var artist="";
+  gameInfo.num_players = {min: g.minplayers.value, max: g.maxplayers.value};
+  gameInfo.play_time = {min: g.minplaytime.value, max: g.maxplaytime.value};
+  var category=[];
+  var mechanic=[];
+  var expansion=[];
+  var designer =[];
+  var artist=[];
   for (let i=0; i<g.link.length; i++) {
     let link=g.link[i];
     switch (link.type) {
       case "boardgamecategory":
-        if (category.length>0) {
-          category += ", ";
-        }
-        category += link.value;
+        category.push(link.value);
         break;
       case "boardgamemechanic":
-        if (mechanic.length>0) {
-          mechanic += ", ";
-        }
-        mechanic += link.value;
+        mechanic.push(link.value);
         break;
       case "boardgameexpansion":
-        if (expansion.length>0) {
-          expansion += ", "
-        }
-        expansion += link.value;
+        expansion.push(link.value);
         break;
       case "boardgamedesigner":
-        if (designer.length>0) {
-          designer += ", "
-        }
-        designer += link.value;
+        designer.push(link.value);
         break;
       case "boardgameartist":
-        if (artist.length>0) {
-          artist += ", ";
-        }
-        artist += link.value;
+        artist.push(link.value);
         break;
     }
   }
@@ -135,12 +128,28 @@ module.exports = {
     //info = JSON.parse(xmlParser.toJson(xmlInfo.data));
     let info = xmlParser.toJson(xmlInfo.data, {object: true, trim: true, sanitize: true})
     console.log(JSON.stringify(info));
-
+//return info;
     // massage the results here... we want to combine the current boardgame info with the xmlInfo
     // that was just fetched in a more sane manner
-    let gameInfo = massageBoardGameInfo(info.items);
 
-    return gameInfo;
+    // first split the info into an array of game info items (bbg puts the array in a weird spot)
+    let theItems=[];
+    if (!info.items) {
+      return undefined;
+    }
+    if (Array.isArray(info.items.item)) {
+      for (let i=0; i<info.items.item.length; i++) {
+        theItems.push(info.items.item[i]);
+      }
+    } else {
+      theItems.push(info.items.item)
+    }
+
+    var theGamesInfo = [];
+    for (let i=0; i<theItems.length; i++) {
+      theGamesInfo.push(massageBoardGameInfo(theItems[i]));
+    }
+    return theGamesInfo;
   }
 
 }
