@@ -27,12 +27,15 @@ var massageBoardGameInfo = function(bbgInfo) {
     }
   }
 
+  // other primary info
   gameInfo.id = g.id;
   gameInfo.description = g.description;
   gameInfo.image = {thumbnail: g.thumbnail, full: g.image}
   gameInfo.year = g.yearpublished.value;
   gameInfo.num_players = {min: g.minplayers.value, max: g.maxplayers.value};
   gameInfo.play_time = {min: g.minplaytime.value, max: g.maxplaytime.value};
+
+  // game design/category info
   var category=[];
   var mechanic=[];
   var expansion=[];
@@ -63,6 +66,19 @@ var massageBoardGameInfo = function(bbgInfo) {
   gameInfo.expansions = expansion;
   gameInfo.mechanics = mechanic;
   gameInfo.categories = category;
+
+  // game rating stuff
+  let gstats=g.statistics.ratings;
+  gameInfo.rating = gstats.average.value;
+  gameInfo.rank = 0
+  for (let i=0; i<gstats.ranks.rank.length; i++) {
+    if (gstats.ranks.rank[i].id == "1") {
+      gameInfo.rank = gstats.ranks.rank[i].value;
+      break;
+    }
+  }
+  gameInfo.game_weight = gstats.averageweight.value;
+
   return gameInfo;
 }
 
@@ -121,13 +137,13 @@ module.exports = {
       idsAsStr += boardgames[i].id
     }
 
-    let lookupUrl = "https://www.boardgamegeek.com/xmlapi2/thing?id="+idsAsStr;
+    let lookupUrl = "https://www.boardgamegeek.com/xmlapi2/thing?id="+idsAsStr+"&stats=1";
     console.log(lookupUrl);
     let xmlInfo = await axios.get(lookupUrl);
     //console.log(typeof(xmlInfo.data))
     //info = JSON.parse(xmlParser.toJson(xmlInfo.data));
     let info = xmlParser.toJson(xmlInfo.data, {object: true, trim: true, sanitize: true})
-    console.log(JSON.stringify(info));
+    //console.log(JSON.stringify(info));
 //return info;
     // massage the results here... we want to combine the current boardgame info with the xmlInfo
     // that was just fetched in a more sane manner
