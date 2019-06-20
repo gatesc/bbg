@@ -3,8 +3,11 @@ import axios from "axios";
 //import Button from 'react-bootstrap/Button';
 import "./App.css";
 import BBGBar from "./components/BBGBar.jsx";
+import GameCardCollection from "./components/GameCardCollection.jsx";
+import DebugLog from "./components/DebugLog.jsx";
+
 //import SearchBox from './components/SearchBox.jsx'
-import GameCard from "./components/GameCard.jsx";
+//import GameCard from "./components/GameCard.jsx";
 
 // =======================================================
 // class GoButton extends React.Component {
@@ -47,7 +50,13 @@ import GameCard from "./components/GameCard.jsx";
 class App extends Component {
   render() {
     //return <div> Ready to use the back end apis</div>
-    return <BBGBar />;
+    return (
+      <div layout="row">
+        <BBGBar />;
+        <GameCardCollection />;
+        <DebugLog />;
+      </div>
+    );
   }
 }
 

@@ -12,7 +12,7 @@ class BBGBar extends Component {
   render() {
     return (
       <Navbar bg="primary" expand="lg" variant="dark">
-        <NavDropdown bg="bg" variant="dark" title="hamburger" id="nav-hamburger">
+        <NavDropdown bg="primary" variant="dark" title="hamburger" id="nav-hamburger">
           <NavDropdown.Item href="#preferences">Preferences</NavDropdown.Item>
         </NavDropdown>
         <Navbar.Brand href="#home">BBG Quick Lookup</Navbar.Brand>

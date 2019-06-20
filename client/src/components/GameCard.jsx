@@ -7,7 +7,7 @@ import './GameCard.css';
 class GameCard extends Component {
     render() {
         return (
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: '32rem', height: '30rem', margin: '10px'}}>
             <Card.Body>
               <Card.Title>Card Title</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>

@@ -14,16 +14,17 @@ class SearchBox extends Component {
   }
 
   handleSubmit() {
+    return this.searchStr
   }
 
   render() {
     return (
       <Form inline>
       <Form.Group controlId="formSearchBox">
-        <Form.Label>Search</Form.Label>
-        <Form.Control type="as" placeholder='Enter Game Title'/>
+        <Form.Label style={{ margin: '10px'}}>Search</Form.Label>
+        <Form.Control type="as" placeholder="Enter Game Title"/>
       </Form.Group>
-      <Button variant="outline-dark" type="submit" onClick="this.handleSubmit">
+      <Button variant="outline-dark" type="submit" onSubmit={this.handleSubmit} style={{margin:'10px'}}>
         Submit
       </Button>
     </Form>
