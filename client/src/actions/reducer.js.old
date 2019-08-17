@@ -1,0 +1,17 @@
+import { combineReducers } from 'redux';
+import DebugMsgReducer from '../reducers/Debug.js';
+// more reducers here
+
+
+// const reducer = (state={msg:'started'}, action) => {
+//   switch(action.type) {
+//     case 'DEBUG': return state.msg
+//     default: return state
+//   }
+// }
+
+const rootReducer = combineReducers({
+  debugMsg: DebugMsgReducer
+});
+
+export default rootReducer;

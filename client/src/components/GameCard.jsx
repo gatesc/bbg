@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
 import './GameCard.css';
 
 // <img class="card-img-top" src="..." alt="Card image cap"> </img>

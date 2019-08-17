@@ -1,0 +1,59 @@
+import React, { Component } from "react";
+import Form from "react-bootstrap/Form";
+import { connect } from "react-redux";
+import { search } from "../actions/search.js";
+
+class SearchBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchStr: ""
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  async onSubmit(e) {
+    e.preventDefault();
+
+    const theSearch = {
+      searchStr: this.state.searchStr
+    };
+    this.props.sendSearchStr(theSearch);
+  }
+
+  // componentWillMount() {
+  //   this.props.searchStr();
+  // }
+  //
+  // componentWillReceiveProps(nextProps) {
+  //     if (nextProps.searchStr) {
+  //       console.log('got... ', this.props.searchStr);
+  //       this.props.searchStr = this.props.searchStr;
+  //     }
+  // }
+
+  render() {
+    <Form>
+      <Form.Group controlId="formSearchBox">
+        <Form.Label>Search</Form.Label>
+        <Form.Control type="email" placeholder="Enter Game Title" />
+        <Form.Text className="text-muted">
+          This will query BoardGameGeek for that title
+        </Form.Text>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>;
+  }
+}
+
+const mapStateToProps = state => ({
+  searchStr: state.searchStr
+});
+
+export default connect(
+  mapStateToProps,
+  { search }
+)(SearchBox);
