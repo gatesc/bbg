@@ -9,7 +9,8 @@ class GameCardCollection extends Component {
   constructor(props) {
     console.log("Inside GameCardCollection constructor")
     super(props)
-    var games=[]
+    var games = []
+    var gamesToDisplay = []
   }
 
   /* state={
@@ -46,6 +47,7 @@ class GameCardCollection extends Component {
       obj.aGame = nextProps.gameSearch;
       //obj.games = nextProps.games;
       obj.games = nextProps.games.map(gameObj => gameObj.name);
+      obj.gamesToDisplay = nextProps.games.map(currGame => <li key={currGame.id}>{currGame.name}</li>)
       return obj;
     })
     
@@ -62,16 +64,18 @@ class GameCardCollection extends Component {
         <p>{this.state.gameSearch}</p>
         <p>{this.state.aGame}</p>
         <ol>
-          {this.state.games.map(currGame => (
-            <li key={currGame}>{currGame}</li>
-          ))}
-        </ol>
+          {this.state.gamesToDisplay}
+         </ol>
       </div>
     );
   }
 }
 
-{/* <table><tbody>
+//{this.state.games.map(currGame => (
+//  <li key={currGame}>{currGame}</li>
+//))}
+
+/* <table><tbody>
 <tr>
   <td>
     <GameCard className="FirstCard" />
@@ -86,7 +90,7 @@ class GameCardCollection extends Component {
   </td>
 </tr>
 </tbody></table>
- */}
+ */
 //const mapDispatchToProps = dispatch => ({
 //  processSearch: () => {
 //    console.log("Hi Mom from mapDispatchToProps")
