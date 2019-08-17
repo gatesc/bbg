@@ -13,12 +13,6 @@ class GameCardCollection extends Component {
     var gamesToDisplay = []
   }
 
-  /* state={
-    gameSearch: '',
-    games: [],
-    gameCards: []
-  }
- */
   state = {
     gameSearch: 'blah1',
     aGame: 'blah2',
@@ -32,14 +26,6 @@ class GameCardCollection extends Component {
     console.log("componentWillReceiveProps... ", this.props.games)
     console.log("nextProps.games... ", nextProps.games);
 
-/*     this.setState(
-      {
-        gameSearch: nextProps.gameSearch,
-        games: nextProps.games,
-        gameCards: []
-      }
-    );
- */
     this.setState((prevState, nextProps) => {
       console.log("prevState", prevState, "   nextState ", nextProps)
       let obj = {};
@@ -51,29 +37,26 @@ class GameCardCollection extends Component {
       return obj;
     })
     
-    //let obj=Object.assign({}, nextProps);
-    //console.log("obj...", obj);
-    //this.setState(obj);
-    //console.log("inside componentWillReceiveProps... state... ", this.state)
-    //console.log(this.state);
   }
 
   render() {
     return (
       <div>
-        <p>{this.state.gameSearch}</p>
-        <p>{this.state.aGame}</p>
-        <ol>
-          {this.state.gamesToDisplay}
-         </ol>
+<p>{this.state.gameSearch}</p>
+<p>{this.state.aGame}</p>
+<ol>
+{this.state.gamesToDisplay}
+</ol>
       </div>
     );
   }
 }
 
-//{this.state.games.map(currGame => (
-//  <li key={currGame}>{currGame}</li>
-//))}
+//<p>{this.state.gameSearch}</p>
+//<p>{this.state.aGame}</p>
+//<ol>
+//{this.state.gamesToDisplay}
+//</ol>
 
 /* <table><tbody>
 <tr>
@@ -91,12 +74,6 @@ class GameCardCollection extends Component {
 </tr>
 </tbody></table>
  */
-//const mapDispatchToProps = dispatch => ({
-//  processSearch: () => {
-//    console.log("Hi Mom from mapDispatchToProps")
-//    dispatch(processSearchStr());
-//  }
-//});
 
 const mapStateToProps = appState => ({
   gameSearch: appState.search.searchStr,
@@ -107,8 +84,3 @@ export default connect(
   mapStateToProps,
   { getGamesInfo })(GameCardCollection);
 
-//export default connect(
-//  mapStateToProps, mapDispatchToProps
-//  )(GameCardCollection);
-
-//export default GameCardCollection;
